@@ -1,14 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
-  end
+
   devise_for :admin,controllers:{
       sessions: "admin/sessions",
       passwords: "admin/passwords",
