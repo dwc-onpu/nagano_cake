@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       post "/orders/confirm" => "orders#confirm"
       get "/orders/complete" => "orders#complete"
   end
- 
+
   namespace :admin do
       root :to => "homes#top"
       resources :items,only:[:index,:show,:new,:create,:edit,:update]
