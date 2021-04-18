@@ -6,7 +6,7 @@ Rails.application.routes.draw do
      delete "/admin/sign_out", to: "admin/sessions#destroy",as: :destroy_admin_session
    end
   devise_for :customers, skip: :all
-   devise_scope :customers do
+   devise_scope :customer do
     get '/customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
     post '/customers', to: 'public/registrations#create', as: :customer_registration
     get "/customers/sign_in", to: "public/sessions#new", as: :new_customer_session
