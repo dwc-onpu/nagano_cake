@@ -10,7 +10,9 @@
    <h4>商品説明</h4>
    <%= f.text_area :introduction %>
    <h4>ジャンル</h4>
-   <%= f.text_field :genre_id %> <!--コレクションセレクト使用-->
+   <%#= f.text_field :genre_id %> <!--コレクションセレクト使用-->
+   <%= f.collection_select(:genre_id, @genres, :id, :name) %>
+   <%#= collection_select(:@genres, :name, genres, :id, :name ) %>
    <h4>税抜き価格</h4>
    <%= f.text_field :price %>
    <h4>販売ステータス</h4>
