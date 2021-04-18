@@ -1,6 +1,6 @@
 <h1>ジャンル一覧・追加</h1>
 
- <%#= form_with(model: [ :admin, @item ]) local:true do |f| %>
+ <%#= form_with(model: [ :admin, @item ]) local:true, url:"admin/items" do |f| %>
  <%= form_with(model: [ :admin, @genre ]) do |f| %>
 
    <h4>ジャンル名</h4>
@@ -12,7 +12,7 @@
 　　<h1>ジャンル</h1>
     <% @genres.each do |genre| %>
      <%= genre.name %>
-     <%#= link_to "編集する",　edit_admin_genre_path(genre) %>
+     <%= link_to "編集する", edit_admin_genre_path(genre) %>
 
 
     <% end %>
