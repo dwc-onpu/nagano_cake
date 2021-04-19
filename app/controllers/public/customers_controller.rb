@@ -15,10 +15,17 @@ class Public::CustomersController < ApplicationController
   end
   
   def withdraw
+    customer = Customer.find_by(id:current_customer.id)
+    customer.update(is_deleted: true)
+    redirect_to root_path
   end
   
   private
   def customer_params
     params.require(:customer).permit(:first_name,:last_name,:first_name_kana,:last_name_kana,:postal_code,:address,:telephone_number,:email)
+  end
+  
+  def is_deleted_params
+    params.permit(:is_deleted)
   end
 end
