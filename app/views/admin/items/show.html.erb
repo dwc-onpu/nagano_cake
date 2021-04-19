@@ -1,16 +1,18 @@
 <h1>商品詳細</h1>
 
       <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg' %>
-      <%= @item.name %>
+      <h4>商品名　<%= @item.name %></h4>
 
-      <%= @item.introduction %>
-      <%= @item.price %>
+      <h4>商品説明　<%= @item.introduction %></h4>
+      <h4>ジャンル　<%= @item.genre.name %></h4>
+      <h4>税込価格　<%=1.1*@item.price %>(<%= @item.price %>)円</h4>
+
       <%#= @item.is_active %>
-      <% if @item.is_active == true %>
+      <h4>販売ステータス　<% if @item.is_active == true %>
            <th>販売中</th>
           <% elsif @item.is_active == false %>
            <th>販売停止中</th>
-          <%  end  %>
+          <%  end  %></h4>
 
 
 

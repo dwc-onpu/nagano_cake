@@ -11,8 +11,8 @@
 
 　　<h1>ジャンル</h1>
     <% @genres.each do |genre| %>
-     <%= genre.name %>
-     <%= link_to "編集する", edit_admin_genre_path(genre) %>
+     <h4><%= genre.name %>
+     <%= link_to "編集する", edit_admin_genre_path(genre) %></h4>
 
 
     <% end %>
