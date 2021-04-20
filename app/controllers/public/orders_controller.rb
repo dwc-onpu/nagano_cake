@@ -45,7 +45,7 @@ class Public::OrdersController < ApplicationController
       @cart_items.each do |cart_item|
         @order_details = @order.order_details.new
         @order_details.item_id = cart_item.item_id
-        @order_details.price = cart_item.item.price # +税
+        @order_details.price = cart_item.item.price * 1.1
         @order_details.amount = cart_item.amount
         @order_details.save
       end
