@@ -11,11 +11,11 @@
   <% total_price = 0 %>
   <% @cart_items.each do |cart_item| %>
     <tbody>
-      <td><%= cart_item.item.image_id %> <%= cart_item.item.name %></td>
-      <td><%= cart_item.item.price %></td>
+      <td><%#= attachment_image_tag %> <%= cart_item.item.name %></td>
+      <td><%= (cart_item.item.price.to_i * 1.1).floor %></td>
       <td><%= cart_item.amount %></td>
-      <td><%= cart_item.item.price * cart_item.amount %></td>
-      <% total_price += cart_item.item.price * cart_item.amount %>
+      <td><%= (cart_item.item.price.to_i * 1.1).floor * cart_item.amount %></td>
+      <% total_price += (cart_item.item.price.to_i * 1.1).floor * cart_item.amount %>
     </tbody>
   <% end %>
 </table>

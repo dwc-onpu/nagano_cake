@@ -45,9 +45,9 @@ class Public::OrdersController < ApplicationController
       @cart_items.each do |cart_item|
         @order_details = @order.order_details.new
         @order_details.item_id = cart_item.item_id
-        @order_details.price = cart_item.item.price * 1.1
+        @order_details.price = (cart_item.item.price.to_i * 1.1).floor
         @order_details.amount = cart_item.amount
-        @order_details.save
+        @order_details.save!
       end
       # current_customer.cart_items.destroy_all
       redirect_to controller: :orders, action: :complete
@@ -57,7 +57,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id)
+    @orders = current_customer.orders.order(created_at: "DESC")
   end
 
   def show
