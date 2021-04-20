@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admin, skip: :all
    devise_scope :admin do
      get "/admin/sign_in", to: "admin/sessions#new",as: :new_admin_session
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     post "/customers/sign_in", to: "public/sessions#create",as: :customer_session
     delete "/customers/sign_out", to: "public/sessions#destroy",as: :destroy_customer_session
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope module: :public do
       root :to => "homes#top"
@@ -25,10 +27,9 @@ Rails.application.routes.draw do
       get "/customers/unsubscribe" => "customers#unsubscribe"
       patch "/customers/withdraw" => "customers#withdraw"
       resources :addresses,only:[:index,:edit,:create,:update,:destroy]
-      resources :orders,only:[:new,:create,:index,:show]
       post "/orders/confirm" => "orders#confirm"
-      get "/orders/confirm" => "orders#confirm"
       get "orders/complete" => "orders#complete"
+      resources :orders,only:[:new,:create,:index,:show]
   end
 
   namespace :admin do

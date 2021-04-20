@@ -1,12 +1,11 @@
 class Public::ItemsController < ApplicationController
-  def index
-    @products = Item.page(params[:page]).per(8).order(id: "DESC")
-  end
+    def index
+     @items=Item.all
+    end
 
-  def show
-    @product = Item.find(params[:id])
-    @cart_product = CartItem.new
-  end
+    def show
+     @item=Item.find(params[:id])
+    end
 end
 
 

@@ -1,5 +1,15 @@
 class Item < ApplicationRecord
-  has_many :cart_items
-  has_many :ordeer_details
+  attachment :image
+  belongs_to :genre
+  has_many :cart_items, dependent: :destroy
+  has_many :order_details, dependent: :destroy
+
+ #enum status: { 販売中: true, 販売停止中: false }
 
 end
+
+            #<%= if item.is_active == true
+               #puts "販売中"
+              #elsif item.is_active == false
+               #puts "販売停止中"
+              #end  %>
