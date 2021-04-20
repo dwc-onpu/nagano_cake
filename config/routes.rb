@@ -25,10 +25,9 @@ Rails.application.routes.draw do
       get "/customers/unsubscribe" => "customers#unsubscribe"
       patch "/customers/withdraw" => "customers#withdraw"
       resources :addresses,only:[:index,:edit,:create,:update,:destroy]
-      resources :orders,only:[:new,:create,:index,:show]
       post "/orders/confirm" => "orders#confirm"
-      get "/orders/confirm" => "orders#confirm"
-      get "orders/complete" => "orders#complete"
+      get "/orders/complete" => "orders#complete"
+      resources :orders,only:[:new,:create,:index,:show]
   end
 
   namespace :admin do
