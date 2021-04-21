@@ -28,6 +28,7 @@
       <td><%= form_with(model: cart_item, local: true, url: cart_item_path(cart_item) ) do |f| %>
           <%= f.label :amount, '' %>
           <%= f.select :amount, {'1': 1, '2': 2, '3': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          <%= f.submit "変更" %>
           <% end %>
       </td>
 
