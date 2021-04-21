@@ -13,7 +13,14 @@
     <header class="bg-dark">
       <div class="container">
         <nav class="d-flex navbar navbar-expand-lg navbar-dark">
-          <a class="navbar-brand" href="/">NAGANO　CAKE</a>
+          <% if admin_signed_in?%>
+            <a class="navbar-brand" href="/admin">NAGANO　CAKE</a>
+          <% elsif customer_signed_in? %>
+            <a class="navbar-brand" href="/">NAGANO　CAKE</a>
+            <p class="text-light ml-2">ようこそ、<%= current_customer %>さん</p>
+          <%else%>
+            <a class="navbar-brand" href="/">NAGANO　CAKE</a>
+          <%end%>
           <div class="ml-auto">
             <ul class="navbar-nav flex-row-reverse">
               <% if customer_signed_in?%>
