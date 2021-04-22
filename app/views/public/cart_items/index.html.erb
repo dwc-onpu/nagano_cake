@@ -15,19 +15,23 @@
     </tr>
   </thead>
   <tbody>
+    <% @sum = 0 %>
     <% @cart_items.each do |cart_item| %>
     <tr>
-      <%# 商品名/画像はまだ %>
-      <td><%= cart_item.item.name %></td>
+      <%# 商品名/画像 %>
+      <td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg', fallback: 'noimage.jpg', size: '60x60', class: "rounded" %>
+      <%= cart_item.item.name %></td>
 
        <%# 単価（税込み） %>
-      <td><%= (cart_item.item.price * 1.1).floor * cart_item.amount %> </td>
+      <td><%= (cart_item.item.price * 1.1).floor * cart_item.amount %>
+      <% @sum += (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
 
 
       <%# 数量 %>
       <td><%= form_with(model: cart_item, local: true, url: cart_item_path(cart_item) ) do |f| %>
           <%= f.label :amount, '' %>
           <%= f.select :amount, {'1': 1, '2': 2, '3': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+          <%= f.submit "変更" %>
           <% end %>
       </td>
 
@@ -42,16 +46,16 @@
     </tr>
   </tbody>
 </table>
+<div>
+
+  <%# 合計金額 %>
+  合計金額<%= @sum %>
+
+</div>
 
 <div>
   <%# 買い物を続ける %>
   <%= link_to "買い物を続ける", items_path, class: "btn btn-outline-danger mt-5" %>
-</div>
-
-<div>
-  <%# 合計金額 %>
-  合計金額<%#= @total_price ? みたいな定義が必要？こうだいさんと相談 %>
-
 </div>
 
 
