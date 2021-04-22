@@ -11,7 +11,8 @@
   <% total_price = 0 %>
   <% @cart_items.each do |cart_item| %>
     <tbody>
-      <td><%#= attachment_image_tag %> <%= cart_item.item.name %></td>
+      <td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg', fallback: 'noimage.jpg', size: '60x60', class: "rounded" %>
+      <%= cart_item.item.name %></td>
       <td><%= (cart_item.item.price.to_i * 1.1).floor %></td>
       <td><%= cart_item.amount %></td>
       <td><%= (cart_item.item.price.to_i * 1.1).floor * cart_item.amount %></td>
