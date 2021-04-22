@@ -1,4 +1,9 @@
-  <%= flash[:notice] %>
+  <% if flash[:danger] %>
+    <p class="alert alert-danger">
+      <%= flash[:danger] %>
+    </p>
+  <% end %>
+  
 <div class="container">
   <div class="badge badge-light ml-2 my-3">
   <h4>ログイン</h4>
