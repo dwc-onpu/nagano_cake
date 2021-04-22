@@ -29,7 +29,6 @@
 
       <%# 数量 %>
       <td><%= form_with(model: cart_item, local: true, url: cart_item_path(cart_item) ) do |f| %>
-          <%= f.label :amount, '' %>
           <%= f.select :amount, {'1': 1, '2': 2, '3': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
           <%= f.submit "変更" %>
           <% end %>
@@ -55,7 +54,7 @@
 
 <div>
   <%# 買い物を続ける %>
-  <%= link_to "買い物を続ける", items_path, class: "btn btn-outline-danger mt-5" %>
+  <%= link_to "買い物を続ける", root_path, class: "btn btn-outline-danger mt-5" %>
 </div>
 
 
