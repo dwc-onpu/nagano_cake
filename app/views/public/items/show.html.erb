@@ -1,14 +1,28 @@
+<div class="container" >
+  
+  <div class="row my-4">
+    <h4>商品詳細</h4>
+  </div>
+  
+  <div class="row">
+    <div class="col-5">
       <%= attachment_image_tag @item, :image, :fill, 300, 300, format: 'jpeg' %>
-      <h4><%= @item.name %></h4>
-      <h4><%= @item.introduction %></h4>
-      <h4>￥<%= 1.1*@item.price %>(税込)</h4>
-
-      <%= form_with(model: @cart_item, local: true, method: :post, url: cart_items_path ) do |f| %>
-        <%= f.select :amount, {'1': 1, '2': 2, '3': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.submit "カートに入れる" %>
-      <% end %>
-
+    </div>
+    <div class="col-7">
+      <h4 class="mb-2"><%= @item.name %></h4>
+      <p class="my-4"><%= @item.introduction %></p>
+      <h4>￥<%= (1.1*@item.price).floor %>(税込)円</h4>
+      <% if customer_signed_in? %>
+       <%= form_with(model: @cart_item, local: true, method: :post, url: cart_items_path ) do |f| %>
+         <%= f.select :amount, {'1': 1, '2': 2, '3': 3}, { include_blank: '選択してください'}, { class: 'form-control mb-2 w-50' , required: true }%>
+         <%= f.hidden_field :item_id, value: @item.id %>
+         <%= f.submit "カートに入れる",class:"btn btn-success"%>
+       <% end %>
+      <% end %> 
+     </div>
+   </div>
+   
+</div>
 
 <%#= form_with(model: cart_items, local: true, url ??_path ) do |f| %>
   <!--<div class="form-group">

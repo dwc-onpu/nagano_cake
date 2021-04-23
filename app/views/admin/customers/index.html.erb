@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="badge badge-light ml-2 my-3">
+  <div class="row badge badge-light ml-2 mt-3">
     <h4>会員一覧</h4>
   </div>
-  <div class="row mx-auto">
+  <div class="row mx-auto pb-4">
     <table class="table w-75 mx-auto">
         <tr>
             <th>会員ID</th>
@@ -24,4 +24,7 @@
     <% end %>
     </table>
    </div>
+     <div class="row justify-content-center">
+     <%= paginate @customers%>
+     </div>
 </div>
