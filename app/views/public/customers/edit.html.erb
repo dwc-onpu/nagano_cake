@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="badge badge-light my-4">
+    <h3>会員情報編集</h3>
+  </div>
+  
+    <%= form_with(model: @customer,url: customers_path,local: true)do |f|%>
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"氏名"%>
+      </div>
+      <div class="col-8">
+        <%= f.text_field :first_name%><%= f.text_field :last_name,class:"ml-2"%>
+      </div>
+    </div>
+    
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"フリガナ"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :first_name_kana%><%= f.text_field :last_name_kana,class:"ml-2"%>
+      </div>
+    </div>
+    
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"郵便番号"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :postal_code%>
+      </div>
+    </div>
+    
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"住所"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :address,size:60%>
+      </div>
+    </div>
+    
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"電話番号"%>
+      </div>
+      <div class="col-8">
+         <%= f.text_field :telephone_number%>
+      </div>
+    </div>
+    
+    <div class="field row mb-1">
+      <div class="col-2">
+        <%= f.label :"メールアドレス"%>
+      </div>
+      <div class="col-8">
+        <%= f.email_field :email,class:"mb-4"%><br>
+        <%= f.submit "編集内容を保存する",class:"btn btn-success"%><%= link_to "退会する", customers_unsubscribe_path,class:"btn btn-danger ml-3"%>
+      </div>
+    </div>
+    <%end%>
+
+</div>

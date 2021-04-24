@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row badge badge-light ml-2 mt-3">
+    <h4>会員一覧</h4>
+  </div>
+  <div class="row mx-auto pb-4">
+    <table class="table w-75 mx-auto">
+        <tr>
+            <th>会員ID</th>
+            <th>氏名</th>
+            <th>メールアドレス</th>
+            <th>ステータス</th>
+        </tr>
+    <% @customers.each do |customer|%>
+    　　<tr>
+    　　    <td><%= customer.id %></td>
+    　　    <td><%=link_to customer.full_name,admin_customer_path(customer.id)%></td>
+    　　    <td><%= customer.email%></td>
+        <% if customer.is_deleted?%>
+    　　    <td class="text-danger">退会</td>
+    　　    <%else%>
+    　　    <td class="text-success">有効</td>
+    　　    <%end%>
+    　　</tr>
+    <% end %>
+    </table>
+   </div>
+     <div class="row justify-content-center">
+     <%= paginate @customers%>
+     </div>
+</div>

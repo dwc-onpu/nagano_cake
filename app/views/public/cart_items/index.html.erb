@@ -1,0 +1,89 @@
+
+<div class="badge badge-light my-4 mx-3">
+<h3>ショッピングカート</h3>
+</div>
+
+<div class="text-center mt-2">
+<%= link_to "カートを空にする",  cart_items_destroy_all_path, method: :DELETE, class: "btn btn-danger" %>
+</div>
+
+<div class="row">
+<div class="col-md-8">
+<table class="table table-hover table-bordered mt-3 mx-3">
+  <thead>
+    <tr>
+      <th style="width: 30%">商品名</th>
+      <th style="width: 15%">単価（税込み）</th>
+      <th style="width: 20%">数量</th>
+      <th style="width: 10%">小計</th>
+      <th style="width: 20%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sum = 0 %>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <%# 商品名/画像 %>
+      <td><%= attachment_image_tag cart_item.item, :image, :fill, 100, 100, format: 'jpeg', fallback: 'noimage.jpg', size: '60x60', class: "rounded" %>
+      <%= cart_item.item.name %></td>
+
+       <%# 単価（税込み） %>
+      <td><%= (cart_item.item.price * 1.1).floor * cart_item.amount %>
+      <% @sum += (cart_item.item.price * 1.1).floor * cart_item.amount %></td>
+
+
+      <%# 数量 %>
+      <td>
+        <div class="col-md-7">
+        <%= form_with(model: cart_item, local: true, url: cart_item_path(cart_item) ) do |f| %>
+
+          <%= f.select :amount, {'1': 1, '2': 2, '3': 3}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+
+          <%= f.submit "変更", class:" text-right btn btn-success" %>
+
+          <% end %>
+           </div>
+      </td>
+
+      <%# 小計 %>
+      <td><%= (cart_item.item.price * 1.1).floor * cart_item.amount %> </td>
+
+
+      <%# 消去 %>
+      <td><%= link_to "消去する", cart_item_path(cart_item), method: :DELETE, class:"btn btn-danger" %></td>
+
+    <% end %>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="row">
+<div class="col-md-8">
+<div class="text-left">
+  <%# 買い物を続ける %>
+  <%= link_to "買い物を続ける", root_path, class: "btn btn-primary mt-2 mx-3" %>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="text-center">
+<table class="table table-hover table-bordered mt-3">
+  <tbody>
+    <tr>
+      <td style="width: 10%">合計金額</td>
+      <td style="width: 10%"><%= @sum %></td>
+      </tr>
+ </tbody>
+</table>
+</div>
+</div>
+
+<div class="col-md-8">
+<div class="text-center">
+  <%= link_to "情報入力画面に進む", new_order_path, class: "btn btn-success mt-2" %>
+</div>
+
+</div>
+</div>
